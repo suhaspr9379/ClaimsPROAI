@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claims Follow-Up Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for Analytics -->
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <h2>Claims Dashboard</h2>
+        <ul>
+            <li><a href="#" onclick="showSection('dashboard')">🏠 Dashboard</a></li>
+            <li><a href="#" onclick="showSection('analytics')">📊 Analytics</a></li>
+            <li><a href="#">⚙️ Settings</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Dashboard Section -->
+        <section id="dashboard">
+            <header>
+                <h1>Claims Overview</h1>
+                <div class="profile">
+                    <span>Dr. Smith</span>
+                    <img src="profile.png" alt="Profile">
+                </div>
+            </header>
+
+            <div class="search-filter">
+                <input type="text" id="searchBox" placeholder="Search claims..." onkeyup="filterClaims()">
+                <select id="statusFilter" onchange="filterClaims()">
+                    <option value="all">All Status</option>
+                    <option value="pending">Pending</option>
+                    <option value="denied">Denied</option>
+                    <option value="approved">Approved</option>
+                </select>
+            </div>
+
+            <div id="claimsContainer" class="claims-list">
+                <!-- Claims will be inserted dynamically -->
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" style="display: none;">
+            <header>
+                <h1>Analytics</h1>
+            </header>
+            <canvas id="claimsChart"></canvas>
+        </section>
+
+    </div>
+
+    <!-- Claim Details Modal -->
+    <div id="claim-details" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Claim Details</h2>
+            <p><strong>Claim ID:</strong> <span id="claimId"></span></p>
+            <p><strong>Patient:</strong> John Doe</p>
+            <p><strong>Payer:</strong> <span id="payerName"></span></p>
+            <p><strong>Status:</strong> <span id="claimStatus"></span></p>
+
+            <h3>AI-Suggested Response</h3>
+            <textarea rows="4" id="responseText">Based on the records, additional documentation is required.</textarea>
+            <button class="primary">Send Response</button>
+        </div>
+    </div>
+
+</body>
+</html>
